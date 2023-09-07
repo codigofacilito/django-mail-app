@@ -1,5 +1,3 @@
-import threading
-
 from django.shortcuts import render
 from django.core.mail import send_mail
 
@@ -9,9 +7,7 @@ def index(request):
 
     if request.method == 'POST':
         email = request.POST.get('email')
-        
-        thread = threading.Thread(target=send_welcome_mail, args=(email, ))
-        thread.start()
+        send_welcome_mail(email)
 
         mail_sent = True
 
